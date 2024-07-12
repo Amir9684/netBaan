@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root,
+#root {
+  height: 100vh;
+}
+
+.space-between::before {
+  line-height: 1em;
+  content: "-";
+  color: #1d2229; /* to hide text */
+  display: block;
+}
+
+.hexagon {
+  position: relative;
+  width: 2em;
+  height: 1.32em;
+  background-color: #78011f;
+}
+.hexagon::before,
+.hexagon::after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background-color: inherit;
+}
+
+.hexagon::before {
+  transform: rotate(60deg);
+}
+.hexagon::after {
+  transform: rotate(-60deg);
+}
