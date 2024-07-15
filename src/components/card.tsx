@@ -3,10 +3,13 @@ import { MoveUpRight } from "lucide-react";
 import { Separator } from "./seperator";
 import { cn } from "../lib/utils";
 import { Skeleton } from "./skeleton";
+import { Chart } from "./chart";
 
 interface CardProps {
   name: string;
   imageSrc: string;
+  live: number[];
+  monitored: number[];
   total: number | undefined;
   liveTotal: number | undefined;
   monitorTotal: number | undefined;
@@ -22,6 +25,8 @@ interface CardProps {
 export const Card = ({
   name,
   imageSrc,
+  live,
+  monitored,
   total,
   liveTotal,
   monitorTotal,
@@ -44,6 +49,30 @@ export const Card = ({
       setFilteredBy(newFilteredBy);
     }
   };
+
+  const liveData = live
+    ? live.map((v) => ({ name: "Live", value: v }))
+    : [
+        { name: "Live", value: 5 },
+        { name: "Live", value: 10 },
+        { name: "Live", value: 20 },
+        { name: "Live", value: 14 },
+        { name: "Live", value: 30 },
+        { name: "Live", value: 60 },
+        { name: "Live", value: 10 },
+      ];
+
+  const monitoredData = monitored
+    ? monitored.map((v) => ({ name: "Monitored", value: v }))
+    : [
+        { name: "Monitored", value: 5 },
+        { name: "Monitored", value: 10 },
+        { name: "Monitored", value: 20 },
+        { name: "Monitored", value: 14 },
+        { name: "Monitored", value: 30 },
+        { name: "Monitored", value: 60 },
+        { name: "Monitored", value: 10 },
+      ];
 
   return (
     <button
@@ -74,26 +103,20 @@ export const Card = ({
       </div>
 
       <div className="space-y-2">
-        <div className="flex justify-between items-center px-2">
-          <div className="flex justify-between items-center gap-5">
+        <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center ">
             <span className="text-white text-start font-bold">
               <h3 className="text-sm">Live</h3>
               <p className="text-xl">{liveTotal}</p>
             </span>
-            <img
-              src="/src/assets/dashboard-full.png"
-              className="object-cover h-11 w-11"
-            />
+            <Chart data={liveData} />
           </div>
-          <div className="flex justify-between items-center gap-5">
+          <div className="flex justify-between items-center ">
             <span className="text-white text-start font-bold">
               <h3 className="text-sm">Monitored</h3>
               <p className="text-xl">{monitorTotal}</p>
             </span>
-            <img
-              src="/src/assets/dashboard-full.png"
-              className="object-cover h-11 w-11"
-            />
+            <Chart data={monitoredData} />
           </div>
         </div>
         <Separator />
