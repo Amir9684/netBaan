@@ -10,7 +10,7 @@ type Props = {
 
 export function Chart({ data }: Props) {
   return (
-    <ResponsiveContainer width={110} height={60}>
+    <ResponsiveContainer width={140} height={60}>
       <BarChart
         width={500}
         height={300}
@@ -21,7 +21,7 @@ export function Chart({ data }: Props) {
           left: 20,
           bottom: 5,
         }}
-        barSize={20}
+        barSize={10}
       >
         <Tooltip content={<CustomTooltip />} />
         <Bar dataKey="value" fill="#3b80ba" />
